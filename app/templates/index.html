@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+
+{% block app_content %}
+    <h1>Привет, {{ current_user.name }}!</h1>
+    <br>
+    <h2>Отчет  по всем пользователям за период {{date[0]}} - {{date[1]}}</h2>
+    <table class="table">
+		<tr> 
+			<td>Пользователь</td>
+			<td>Сумма за период</td>
+			{% for date in date_list%}
+			<td class="row">{{date}}</td>
+			{%endfor%}
+		</tr>
+
+			{% for item in result %}
+		<tr>
+			{%for i in range(cols)%}
+			{% if item[i] is not none%}
+			<td>{{item[i]}}</td>
+			{% else%}
+			<td>0</td>
+			{% endif %}
+			{%endfor%}
+		</tr>
+
+			{% endfor %}
+
+	</table>
+	
+	<h2>Отчет  по пользователям за период {{date[0]}} - {{date[1]}} по фитнесс клубу Body L.A.B</h2>
+	<table class="table">
+		<tr> 
+			<td>Пользователь</td>
+			<td>Сумма за период</td>
+		</tr>
+
+			{% for item in result_p %}
+		<tr>
+			{%for i in range(2)%}
+			{% if item[i] is not none%}
+			<td>{{item[i]}}</td>
+			{% else%}
+			<td>0</td>
+			{% endif %}
+			{%endfor%}
+		</tr>
+
+			{% endfor %}
+
+	</table>
+
+
+
+{% endblock %}

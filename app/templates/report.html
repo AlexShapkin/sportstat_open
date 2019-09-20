@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block app_content %}
+	<h1>{{title}}</h1>
+	<form action="" method="post">
+				{{ form.csrf_token }}
+        		{{ form.hidden_tag() }}
+    {{ form.begindate(class='datepicker') }}
+    {% for error in form.begindate.errors %}
+				<span style="color: red">[{{ error }}]</span>
+	{% endfor %}
+    {{ form.enddate(class='datepicker') }}
+    {% for error in form.enddate.errors %}
+				<span style="color: red">[{{ error }}]</span>
+	{% endfor %}
+	    <p>{{ form.submit() }}</p>
+    	<table class="table">
+		<tr> 
+			<td>Спорт</td>
+			<td>Сумма за период</td>
+			<td> Дистанция/длительсноть</td>
+			{% for date in date_list%}
+			<td class="row">{{date}}</td>
+			{%endfor%}
+		</tr>
+
+			{% for item in result %}
+		<tr>
+			{%for i in range(cols)%}
+			{% if item[i] is not none%}
+			<td>{{item[i]}}</td>
+			{% else%}
+			<td>0</td>
+			{% endif %}
+			{%endfor%}
+		</tr>
+
+			{% endfor %}
+
+	</table>
+
+
+</form>
+{% endblock %}

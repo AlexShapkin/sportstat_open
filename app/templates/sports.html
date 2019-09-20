@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block app_content %}
+	<h1>{{title}}</h1>
+	<table class="table">
+		<tr> 
+			<td>Группа</td>
+			<td>Описание группы</td>
+			<td>Название спорта</td>
+			<td>Описание спорта</td>
+		</tr>
+		{% for item in sport_list %}
+		<tr>
+			<td>{{item.sportsgroup.name}}</td>
+			<td>{{item.sportsgroup.rus_name}}</td>
+			<td>{{item.name}}</td>
+			<td>{{item.rus_name}}</td>
+			{% if current_user.get_role() == 'admin'%}
+			<td><a href="{{ url_for('sport_edit', sport=item.name) }}">Edit</a></td>
+			{%else%}
+			<td><a href="{{ url_for('sport_edit', sport=item.name) }}">View</a></td>
+			{%endif%}
+		</tr>
+		{%endfor%}
+	</table>
+	
+	<hr>
+{% endblock %}

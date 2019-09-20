@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block app_content %}
+	<h1>{{ title }}</h1>
+
+		<table class="table">
+		<tr> 
+			<td>Название клуба</td>
+			<td>URL</td>
+		</tr>
+
+			{% for item in result %}
+		<tr>
+			<td>{{item.name}}</td>
+			<td>{{item.url}}</td>
+			{% if current_user.get_role() == 'admin'%}
+			<td><a href="{{ url_for('place_edit', place=item.name) }}">Edit</a></td>
+			{%endif%}
+
+		</tr>
+			{% endfor %}
+	{% if current_user.get_role() == 'admin'%}
+	<h2>Add new place</h2>
+
+	<form action="" method="post">
+				{{ form.csrf_token }}
+        		{{ form.hidden_tag() }}
+
+		<p>
+			{{ form.name.label }} <br>
+			{{ form.name(size=32) }}<br>
+			{% for error in form.name.errors %}
+				<span style="color: red">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.url.label }} <br>
+			{{ form.url(cols=50, row =4) }} <br>
+			{% for error in form.url.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+
+		<p>{{ form.submit() }}</p>
+	</form>
+	<h1>Current places</h1>
+	{% endif %}
+{% endblock %}

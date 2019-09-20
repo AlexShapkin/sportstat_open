@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block app_content %}
+	<form action="" method="post">
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.name.label }} <br>
+			{{ form.name(size=32) }}<br>
+			{% for error in form.name.errors %}
+				<span style="color: red">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.rus_name.label }} <br>
+			{{ form.rus_name(cols=50, row =4) }} <br>
+			{% for error in form.rus_name.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.rank.label }} <br>
+			{{ form.rank() }} <br>
+			{% for error in form.rank.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>{{ form.submit() }}</p>
+	</form>
+{% endblock %}

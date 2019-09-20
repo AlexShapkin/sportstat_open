@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block app_content %}
+	<h1>{{ title }}</h1>
+	<form action="" method="post">
+		        {{ form.csrf_token }}
+        		{{ form.hidden_tag() }}
+		<p>
+                 
+            {{ form.sport_group.label }}<br>
+            {{ form.sport_group(readonly="readonly") }}<br>
+            {% for error in form.sport_group.errors %}
+				<span style="color: red">[{{ error }}]</span>
+			{% endfor %}
+                  
+		</p>
+		<p>
+			{{ form.name.label }} <br>
+			{{ form.name(size=32) }}<br>
+			{% for error in form.name.errors %}
+				<span style="color: red">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.rus_name.label }} <br>
+			{{ form.rus_name(cols=50, row =4) }} <br>
+			{% for error in form.rus_name.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.rank.label }} <br>
+			{{ form.rank() }} <br>
+			{% for error in form.rank.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.bottom.label }} <br>
+			{{ form.bottom() }} <br>
+			{% for error in form.bottom.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.upper.label }} <br>
+			{{ form.upper() }} <br>
+			{% for error in form.upper.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.coeff1.label }} <br>
+			{{ form.coeff1() }} <br>
+			{% for error in form.coeff1.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.criteria.label }} <br>
+			{{ form.criteria() }} <br>
+			{% for error in form.criteria.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.criteria_desc.label }} <br>
+			{{ form.criteria_desc(size=100) }} <br>
+			{% for error in form.criteria_desc.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.coeff2.label }} <br>
+			{{ form.coeff2() }} <br>
+			{% for error in form.coeff2.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+                 
+                  {{ form.place.label }}<br>
+                  {{ form.place }}<br>
+			{% for error in form.place.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+                  
+		</p>
+		{% if current_user.get_role() == 'admin'%}
+		<p>{{ form.submit() }}</p>
+		{%endif%}
+	</form>
+{% endblock %}

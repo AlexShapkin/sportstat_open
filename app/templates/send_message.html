@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block app_content %}
+	<h1>{{ title }}</h1>
+	<form action="" method="post">
+		        {{ form.csrf_token }}
+        		{{ form.hidden_tag() }}
+		<p>
+                 
+            {{ form.message_text.label }}<br>
+            {{ form.message_text(cols=50, row =4) }}<br>
+            {% for error in form.message_text.errors %}
+				<span style="color: red">[{{ error }}]</span>
+			{% endfor %}
+                  
+		</p>
+
+
+
+		<p>{{ form.submit() }}</p>
+	</form>
+{% endblock %}
